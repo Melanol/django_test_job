@@ -12,9 +12,9 @@ register = template.Library()
 def draw_menu(context, menu_name):
     menu = get_object_or_404(MenuItem, name=menu_name, parent=None)
     local_context = {'menu_item': menu}
-    requested_url = context['request'].path
+    url = context['request'].path
     try:
-        active_menu_item = MenuItem.objects.get(url=requested_url)
+        active_menu_item = MenuItem.objects.get(url=url)
     except ObjectDoesNotExist:
         pass
     else:
